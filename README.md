@@ -33,3 +33,13 @@ total 8
 -rw-r--r-- 1 root root   40 Jul 21 15:35 hq2j_dc_access_ip.yml
 -rw-r--r-- 1 root root 2763 Jul 21 15:35 hq2j_dc.yml
 ```
+
+参考地址：
+[Ansible介绍](https://getansible.com/)
+[cisco1](https://docs.ansible.com/ansible/latest/modules/nxos_acl_module.html?highlight=cisco)
+[cisco1](https://docs.ansible.com/ansible/latest/modules/asa_acl_module.html?highlight=cisco）
+[cisco1]（https://docs.ansible.com/ansible/latest/modules/nxos_acl_interface_module.html?highlight=cisco）
+
+### ansible tower是收费的，可以破解使用，实现图形界面化的配置ansible
+参考地址：
+[ansible-tower安装以及破解](https://www.tracymc.cn/archives/1510)
