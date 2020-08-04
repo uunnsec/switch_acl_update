@@ -26,4 +26,10 @@ yz_nexus2 ip=2.2.2.2 username=test password=test
 [hq2j_dc]
 jxq_nexus1 ip=3.3.3.3 username=test password=test
 jxq_nexus2 ip=4.4.4.4 username=test password=test
+
+保存获取到的iplist到yml文件中
+[root@cloud_security_group_api ansible]# ll group_vars/hq2j_dc/
+total 8
+-rw-r--r-- 1 root root   40 Jul 21 15:35 hq2j_dc_access_ip.yml
+-rw-r--r-- 1 root root 2763 Jul 21 15:35 hq2j_dc.yml
 ```
