@@ -1,0 +1,48 @@
+---
+   - name: configure Cisco Switch
+     hosts: hq2j_dc
+     gather_facts: no
+     connection: local
+     vars:
+      creds:
+       host: "{{ ip }}"
+       username: "{{ username }}"
+       password: "{{ password }}"
+     tasks:
+      - name: Untied access-group HQ2J_DC and delete access-list HQ2J_DC
+        ios_config:
+          provider: "{{ creds }}"
+          parents: interface ethernet 1/44
+          lines:
+           - no ip access-group HQ2J_DC in
+           - no ip access-list HQ2J_DC
+      - name: Create Access-List HQ2J_DC
+        ios_config:
+          provider: "{{ creds }}"
+          parents: ip access-list HQ2J_DC
+          lines: 
+            - "permit ip {{ item }} any"      
+        with_items:
+          - "{{ hq2j_dc }}"
+      - name: Add items to Access-List HQ2J_DC
+        ios_config:
+          provider: "{{ creds }}"
+          parents: ip access-list HQ2J_DC
+          lines: permit ip any {{ item }}
+        with_items: 
+          - "{{ hq2j_dc_access_ip }}"
+      - name: Add items to Access-List HQ2J_DC
+        ios_config:
+          provider: "{{ creds }}"
+          parents: ip access-list HQ2J_DC
+          lines: 
+           - permit tcp any eq www any
+           - permit tcp any eq 25 any
+           - permit tcp any eq 443 any
+           - permit tcp any eq 465 any
+           - permit tcp any eq 6000 any
+           - permit tcp any eq domain any
+           - permit udp any eq domain any
+           - permit tcp any eq nntp any
+           - permit udp any eq ntp any
+           - permit icmp any any

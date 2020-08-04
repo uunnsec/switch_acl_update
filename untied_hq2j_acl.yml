@@ -1,0 +1,17 @@
+---
+   - name: configure Cisco Switch
+     hosts: hq2j_dc
+     gather_facts: no
+     connection: local
+     vars:
+      creds:
+       host: "{{ ip }}"
+       username: "{{ username }}"
+       password: "{{ password }}"
+     tasks:
+      - name: Untied Access-group HQ2J_DC
+        ios_config:
+          provider: "{{ creds }}"
+          parents: interface ethernet 1/44
+          lines:
+           - no ip access-group HQ2J_DC in
